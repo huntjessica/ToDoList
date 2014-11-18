@@ -2,3 +2,64 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+
+
+h1 {text-align: center;
+font-family: Georgia;
+font-size: 80px;}
+
+th{
+font-size: 20px;
+text-align: center;
+
+}
+
+body{
+  background-color: #CDFFFF;
+}
+
+table.gridtable {
+font-family: Georgia;
+font-size:20px;
+color:#333333    ;
+border-width: 1px;
+border-color: #666666;
+border-collapse: collapse;
+margin-left:auto;
+margin-right:auto;
+}
+
+table.gridtable th {
+border-width: 1px;
+padding: 8px;
+border-style: solid;
+border-color: #666666;
+background-color: #B0C4DE;
+}
+
+
+table.gridtable td {
+border-width: 1px;
+padding: 8px;
+border-style: solid;
+border-color: #666666;
+background-color: #ffffff;
+font-size: 15px;
+}
+
+#new {
+  text-align: center;
+  font-family: Georgia;
+  font-size: 15px;
+  border: solid black;
+  margin: 0 auto;
+  width: 225px;
+  background-color: #E8E8E6;
+  border-width: 1px;
+  border-radius: 2px;
+}
+div {
+  text-align: center;
+}
+a:hover{color: #7CBA41;}
