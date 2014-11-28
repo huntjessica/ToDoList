@@ -1,5 +1,6 @@
 class TodoItemsController < ApplicationController
   before_action :set_todo_item, only: [:edit, :update, :destroy]
+  before_action :set_list, only: [:edit, :index, :new, :create]
   before_action :authenticate_user!
   # GET /todo_items
   # GET /todo_items.json
@@ -24,7 +25,7 @@ class TodoItemsController < ApplicationController
     @todo_item = TodoItem.new(todo_item_params)
 
     if @todo_item.save
-      redirect_to todo_items_url, notice: 'Todo item was successfully created.'
+      redirect_to list_todo_items_url(@list), notice: 'Todo item was successfully created.'
     else
       render :new 
     end
@@ -60,8 +61,12 @@ class TodoItemsController < ApplicationController
       @todo_item = TodoItem.find(params[:id])
     end
 
+    def set_list
+      @list = List.find(params[:list_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_item_params
-      params.require(:todo_item).permit(:description, :completed)
+      params.require(:todo_item).permit(:description, :completed, :list_id)
     end
 end

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :lists do   
+    resources :todo_items, only: [:edit, :index, :new, :create]
+  end
+
+  resources :todo_items, only: [ :update, :destroy]
+
   devise_for :users
-  resources :todo_items, except: [:show]
+
   root 'todo_items#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
