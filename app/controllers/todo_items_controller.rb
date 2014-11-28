@@ -1,6 +1,6 @@
 class TodoItemsController < ApplicationController
   before_action :set_todo_item, only: [:edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /todo_items
   # GET /todo_items.json
   def index
