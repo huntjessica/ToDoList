@@ -16,20 +16,12 @@
     <%= f.text_field :description %>
   </div>
  
-
-<div class="field"> 
-    <%= f.label :due_date %><br>
-    <%= f.date_select :date %>
-  </div>
-
 <div>
 <%= f.label "State" %><br>
 <%= f.select :state, [["Backlog",0], ["Ready", 1], ["In Progress", 2], ["Completed", 3]] %>
 </div>
 
   <%= f.hidden_field :list_id, value: @list.id %>
-
-
 
   <div class="actions">
     <%= f.submit %>

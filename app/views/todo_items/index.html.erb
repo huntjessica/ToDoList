@@ -4,23 +4,31 @@
 <table class="gridtable">
   <thead>
     <tr>
-      <th>Completed</th>
+      <th>Status</th>
 
       <th>Description</th>
-      <th colspan="2"></th>
+      <th colspan="2"> Actions </th>
+      
+      <th>Due Date</th>
+      <th> Updated At </th>
     </tr>
   </thead>
 
   <tbody>
     <% @list.todo_items.each do |todo_item| %>
       <tr>
-        <% check_icon = todo_item.completed ? "fa fa-check-circle-o" : "fa fa-circle-o" %>
-          <td><%= link_to '', todo_item_path(@list, todo_item, {todo_item:{completed: !todo_item.completed}}), method: :put, class: check_icon %></td>
+       
+         <td><%= todo_item.status %></td> 
         
         <td><%= todo_item.description %></td>
         <td><%= link_to 'Edit', edit_list_todo_item_path(@list, todo_item), class: "fa fa-pencil" %></td>
       
-        <td><%= link_to 'Delete', todo_item_path(@list, todo_item), method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash" %>
+        <td><%= link_to 'Delete', list_todo_item_path(@list, todo_item), method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash" %>
+        </td>
+
+        <td><%= todo_item.date %></td>
+        <td> <% from_time = todo_item.updated_at %> 
+            <%= time_ago_in_words(from_time) %> ago
         </td>
       
 

@@ -25,7 +25,7 @@ class TodoItemsController < ApplicationController
     @todo_item = TodoItem.new(todo_item_params)
 
     if @todo_item.save
-      redirect_to list_todo_items_url(@list), notice: 'Todo item was successfully created.'
+      redirect_to list_todo_items_path, notice: 'Todo item was successfully created.'
     else
       render :new 
     end
@@ -34,9 +34,10 @@ class TodoItemsController < ApplicationController
   # PATCH/PUT /todo_items/1
   # PATCH/PUT /todo_items/1.json
   def update
+    @list = @todo_item.list
     respond_to do |format|
       if @todo_item.update(todo_item_params)
-        format.html { redirect_to todo_items_url, notice: 'Todo item was successfully updated.' }
+        format.html { redirect_to list_todo_items_path, notice: 'Todo item was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo_item }
       else
         format.html { render :edit }
@@ -48,9 +49,10 @@ class TodoItemsController < ApplicationController
   # DELETE /todo_items/1
   # DELETE /todo_items/1.json
   def destroy
+    @list = @todo_item.list
     @todo_item.destroy
     respond_to do |format|
-      format.html { redirect_to todo_items_url, notice: 'Todo item was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Todo item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +69,6 @@ class TodoItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_item_params
-      params.require(:todo_item).permit(:description, :completed, :list_id)
+      params.require(:todo_item).permit(:description, :list_id, :date, :state)
     end
 end
